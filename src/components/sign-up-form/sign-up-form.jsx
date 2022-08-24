@@ -38,7 +38,7 @@ const SignUpForm = () => {
                 email,
                 password
             );
-
+            console.log({ user })
             await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
         } catch (error) {
@@ -49,7 +49,6 @@ const SignUpForm = () => {
             }
         }
     };
-
     const handleChange = (event) => {
         const { name, value } = event.target;
 
