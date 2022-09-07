@@ -50,6 +50,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
             password
         );
         yield call(getSnapshotFromUserAuth, user);
+        console.log(user);
     } catch (error) {
         yield put(signInFailed(error));
     }
