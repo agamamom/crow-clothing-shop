@@ -39,7 +39,8 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
     collectionKey,
-    objectsToAdd
+    objectsToAdd,
+    field
 ) => {
     const batch = writeBatch(db);
     const collectionRef = collection(db, collectionKey);
