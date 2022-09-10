@@ -8,14 +8,10 @@ import { rootReducer } from './root-reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middleWares = [
-    process.env.NODE_ENV === 'development' &&
-    sagaMiddleware
-].filter(Boolean);
-
-const composeEnhancer =
-    (process.env.NODE_ENV !== 'production') ||
-    compose;
+// const middleWares = [
+//     process.env.NODE_ENV === 'development' &&
+//     sagaMiddleware
+// ].filter(Boolean);
 
 const persistConfig = {
     key: 'root',
@@ -23,7 +19,7 @@ const persistConfig = {
     blacklist: ['user'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
+const composedEnhancers = applyMiddleware(sagaMiddleware);
 export const store = createStore(persistedReducer, undefined, composedEnhancers);
 
 sagaMiddleware.run(rootSaga);
