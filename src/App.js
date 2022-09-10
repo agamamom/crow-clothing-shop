@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -11,9 +11,13 @@ import { checkUserSession } from './store/user/user.action';
 
 const App = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(checkUserSession());
+    if (checkUserSession) {
+      navigate("/")
+    }
   }, []);
 
   return (
